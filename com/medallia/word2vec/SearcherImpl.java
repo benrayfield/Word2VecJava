@@ -11,8 +11,10 @@ import java.nio.DoubleBuffer;
 import java.util.Arrays;
 import java.util.List;
 
-/** Implementation of {@link Searcher} */
-class SearcherImpl implements Searcher {
+/** Implementation of {@link Searcher}
+benrayfield changed this from package(default) to public.
+*/
+public class SearcherImpl implements Searcher {
   private final NormalizedWord2VecModel model;
   private final ImmutableMap<String, Integer> word2vectorOffset;
 
@@ -69,10 +71,11 @@ class SearcherImpl implements Searcher {
   }
 
   /**
-   * @return Vector for the given word
-   * @throws UnknownWordException If word is not in the model's vocabulary
-   */
-  private double[] getVector(String word) throws UnknownWordException {
+  @return Vector for the given word
+  @throws UnknownWordException If word is not in the model's vocabulary.
+  benrayfield changed this from private to public.
+  */
+  public double[] getVector(String word) throws UnknownWordException {
 	final double[] result = getVectorOrNull(word);
 	if(result == null)
 	  throw new UnknownWordException(word);
@@ -80,7 +83,8 @@ class SearcherImpl implements Searcher {
 	return result;
   }
 
-  private double[] getVectorOrNull(final String word) {
+  /** benrayfield changed this from private to public */
+  public double[] getVectorOrNull(final String word) {
 	final Integer index = word2vectorOffset.get(word);
 	  if(index == null)
 		return null;
